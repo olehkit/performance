@@ -146,7 +146,7 @@ public class Objects extends PageObjectInitializer {
     }
 
     public void clickGoToCheckout() {
-        sleep(1000);
+        sleep(2000);
         click(gotToCheckoutBtn);
     }
 
@@ -186,6 +186,8 @@ public class Objects extends PageObjectInitializer {
 
     public void clickAddToCart(String name) {
         WebElement addToCard = getDriver().findElement(By.xpath(String.format("//div[contains(@class,'product-item-info imgdim-x')][.//a[@title=\"%s\"]]//button[@title='Add to Cart']", name)));
+        WebElement loader = getDriver().findElement(By.xpath("//h1[@class='page-title']//span[@itemprop='name']"));
+        wait.until(ExpectedConditions.visibilityOf(loader));
         jsClick(addToCard);
     }
 
