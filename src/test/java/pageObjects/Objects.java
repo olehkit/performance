@@ -1,5 +1,6 @@
 package pageObjects;
 
+import com.beust.ah.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -186,9 +187,12 @@ public class Objects extends PageObjectInitializer {
 
     public void clickAddToCart(String name) {
         WebElement addToCard = getDriver().findElement(By.xpath(String.format("//div[contains(@class,'product-item-info imgdim-x')][.//a[@title=\"%s\"]]//button[@title='Add to Cart']", name)));
-        WebElement loader = getDriver().findElement(By.xpath("//h1[@class='page-title']//span[@itemprop='name']"));
-        wait.until(ExpectedConditions.visibilityOf(loader));
-        jsClick(addToCard);
+        WebElement element = getDriver().findElement(By.xpath(String.format("//div[contains(@class,'product-item-info imgdim-x')][.//a[@title=\"%s\"]]", name)));
+//        WebElement loader = getDriver().findElement(By.xpath("//h1[@class='page-title']//span[@itemprop='name']"));
+//        wait.until(ExpectedConditions.visibilityOf(loader));
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).click(addToCard).perform();
+//        jsClick(addToCard);
     }
 
     public void enterCustomerCity(String customerCity) {
@@ -197,8 +201,7 @@ public class Objects extends PageObjectInitializer {
 
     public void successfulGuestCheckout() {
         Faker faker = new Faker();
-        sleep(5000);
-        customWait(60).until(ExpectedConditions.visibilityOf(customerEmailInput));
+        waitUntilCheckoutLoaderDisappears();
         enterCustomerEmail(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "@guerrillamail.net");
         enterCustomerFirstName(faker.name().firstName());
         enterCustomerLastName(faker.name().lastName());
@@ -218,6 +221,7 @@ public class Objects extends PageObjectInitializer {
         clickTermsConditionsCheckbox();
         sleep(200);
         clickPlaceOrder();
+        waitUntilCheckoutLoaderDisappears();
         verifySuccessfulCheckout();
     }
 

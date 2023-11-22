@@ -76,7 +76,7 @@ public class BaseMethod {
 
         assert getDriver() != null;
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
-        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(35));
+        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
     }
 
     public void closeBrowser() {

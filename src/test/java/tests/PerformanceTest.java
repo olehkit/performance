@@ -130,8 +130,10 @@ public class PerformanceTest extends BaseTest {
     private void fullCheckout() {
         try {
             super.beforeClassMain();
-            UI.Objects().selectMenu("E-Gift Card");
-            UI.Objects().clickAddToCart("CO2LiftProduct don't remove");
+//            UI.Objects().selectMenu("E-Gift Card");
+//            UI.Objects().clickAddToCart("CO2LiftProduct don't remove");
+            openUrl("https://regressionshopsm.dermpro.com/co2lift-defend-hyaluronic-serum-with-apple-stem-cell.html");
+            UI.Objects().clickAddToCart();
             UI.Objects().clickGoToCheckout();
             UI.Objects().successfulGuestCheckout();
             closeBrowser();
