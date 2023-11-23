@@ -1,7 +1,9 @@
 package configuration;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.javafaker.Faker;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -93,17 +95,16 @@ public class HTTPClientSM {
         }
     }
 
-    public static void createCustomer(String email, String firstName, String lastName) {
+    public static void createCustomer(String email, String firstName, String lastName) throws JsonProcessingException, InterruptedException {
         String payload = "{\"customer\": {\"group_id\": 1,\"dob\": \"1999-10-10\",\"email\": \"" + email + "\",\n" +
                 "    \"firstname\": \"" + firstName + "\",\"lastname\": \"" + lastName + "\",\"gender\": 1}}";
+        Thread.sleep(new Faker().random().nextInt(1000, 10000));
         String responseBody = sendPostRequest("https://shopmanager.staging.dermpro.com/v1/store/customer", payload);
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(responseBody);
-            Assert.assertEquals(jsonNode.get("message").toString(), "\"Success\"", "Customer is not created");
-        } catch (Exception e) {
-            e.fillInStackTrace();
-        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(responseBody);
+        System.out.println("jsonNode = " + jsonNode);
+        Assert.assertEquals(jsonNode.get("message").toString(), "\"Success\"", "Customer is not created");
     }
 
 

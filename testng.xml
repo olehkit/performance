@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Tests" parallel="tests" thread-count="3" data-provider-thread-count="1" verbose="10">
+<suite name="All Tests" parallel="tests" thread-count="1" data-provider-thread-count="1" verbose="10">
 
-    <test name="Test 1" parallel="methods" thread-count="8">
+    <test name="Test 1" parallel="methods" thread-count="3">
         <classes>
-            <class name="tests.PerformanceTest"/>
+            <class name="tests.CreateUserTest"/>
         </classes>
     </test>
-    <test name="Test 2" parallel="methods" thread-count="8">
-        <classes>
-            <class name="tests.PerformanceTest"/>
-        </classes>
-    </test>
-<!--    <test name="Test 3" parallel="methods" thread-count="5">-->
+<!--    <test name="Test 2" parallel="methods" thread-count="20">-->
 <!--        <classes>-->
 <!--            <class name="tests.CreateUserTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
-    <test name="Test 4" parallel="methods" thread-count="8">
-        <classes>
-            <class name="tests.PerformanceTest"/>
-        </classes>
-    </test>
+<!--    <test name="Test 3" parallel="methods" thread-count="20">-->
+<!--        <classes>-->
+<!--            <class name="tests.CreateUserTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Test 4" parallel="methods" thread-count="20">-->
+<!--        <classes>-->
+<!--            <class name="tests.CreateUserTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

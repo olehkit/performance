@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import com.github.javafaker.Faker;
+import org.testng.Assert;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
